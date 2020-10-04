@@ -1,44 +1,55 @@
-
 import java.awt.*;
 import java.awt.event.*;
 
-public class ButtonColor extends Frame implements ActionListener
+public class awtButton extends Frame implements ActionListener
 {
-  Button redb, blueb;		
-public ButtonColor()	
-  {
-FlowLayout fl = new FlowLayout();	
-setLayout(fl);
+	Button b1,b2;
+	public awtButton()
+	{
+		setLayout(new FlowLayout());
+		b1=new Button("Red");
+		b2=new Button("Blue");
+		b1.addActionListener(this);
+		b2.addActionListener(this);
+		addWindowListener(new MyWindowAdapter6(this));
+		add(b1);
+		add(b2);
+		
+		setTitle("Button");
+		setSize(400,400);
+		setVisible(true);
 
-redb = new Button("Red");		
-blueb = new Button("Blue");
+	}
+	
+	public void actionPerformed(ActionEvent e)
+	{
+		String str=e.getActionCommand();
+		if(str.equals("Red"))
+		{
+			setBackground(Color.red);
+		}
+		if(str.equals("Blue"))
+		{
+			setBackground(Color.blue);
+		}
+	}
 
-redb.addActionListener(this);		
-blueb.addActionListener(this);
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+      awtButton a=new awtButton();
+ 
+	}
 
-add(redb);			
-add(blueb);   
-
-setTitle("Button in Action");
-setSize(300, 350);                      
-setVisible(true);
- }
-			
-public void actionPerformed(ActionEvent e)  {
-    String str = e.getActionCommand();	
-System.out.println("You clicked " + str + " button");  
-
-if(str.equals("Red"))
-    {
-setBackground(Color.red);
-    }
-else if(str.equals("Blue"))
-    {
-setBackground(Color.blue);
-    }
-  }
-public static void main(String args[])
-  {
-new ButtonColor();                      
-  }			
+}
+class MyWindowAdapter6 extends WindowAdapter
+{
+	awtButton a;
+	MyWindowAdapter6(awtButton a)
+	{
+		this.a=a;
+	}
+	public void windowClosing(WindowEvent ae)
+	{
+		a.setVisible(false);
+	}
 }
