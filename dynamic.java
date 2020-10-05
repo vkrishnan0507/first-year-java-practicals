@@ -2,7 +2,7 @@ package p;
 import p1.*;
 import p2.*;
 
-
+//dynamic methord dispatch
 
 public class dynamic 
 {
